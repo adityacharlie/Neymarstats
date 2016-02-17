@@ -3,6 +3,7 @@ from .forms import QuestionForm
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from .models import Question
 
 # Create your views here.
 
@@ -21,5 +22,10 @@ def add_question(request):
     context = RequestContext(request, {'question_form': question_form})
     return render_to_response('add_question.html', context_instance=context)
     
+
+def question_list(request):
+    questions = Question.objects.all()
     
+    context = RequestContext(request, {'questions': questions})
+    return render_to_response('question_list.html', context_instance=context)
     

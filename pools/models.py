@@ -35,6 +35,9 @@ class Question(models.Model):
         slug = default_slugify(tag)
         return slug[:50]
         
+    def get_fields_and_values(self):
+            return [(field, field.value_to_string(self)) for field in Question._meta.fields]
+        
         
     
     

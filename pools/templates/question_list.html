@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+{% block content%}
+
+<table border="solid">
+ {% for obj in questions %}
+    <tr>
+        {% for fld, val in obj.get_fields_and_values %}
+            <td>{{ val }}</td>
+        {% endfor %}
+    </tr>
+ {% endfor %}
+</table>
+
+{% endblock%}
