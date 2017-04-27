@@ -15,11 +15,25 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import pools.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^question/add/$', view='pools.views.add_question', name='add_question'),
-    url(r'^question/list/$', view='pools.views.question_list', name='question_list'),
+    url(r'^question/add/$', pools.views.add_question, name='add_question'),
+    url(r'^question/list/$', pools.views.question_list, name='question_list'),
+
+
+    # Stats URLs
+    url(r'^ney/stats/$', pools.views.add_ney_stats, name='add_ney_stats'),
+    url(r'^ney/stats/(?P<sid>\d+)/$', pools.views.add_ney_stats, name='edit_ney_stats'),
+
+
+    url(r'ney/homestats/add/$', pools.views.add_ney_home_stats, name='add_ney_home_stats'),
+    #url(r'ney/awaystats/add/$', pools.views.add_ney_away_stats, name='add_ney_away_stats'),
+    #url(r'ney/defensivestats/add/$', pools.views.add_ney_defensive_stats, name='add_ney_defensive_stats'),
+    #url(r'ney/offensivestats/add/$', pools.views.add_ney_offensive_stats, name='add_ney_offensive_stats'),
+    #url(r'ney/passingstats/add/$', pools.views.add_ney_passing_stats, name='add_ney_passing_stats'),
+
 ]
 
 
