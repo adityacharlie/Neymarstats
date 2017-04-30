@@ -26,6 +26,7 @@ urlpatterns = [
     # Stats URLs
     url(r'^ney/stats/$', pools.views.add_ney_stats, name='add_ney_stats'),
     url(r'^ney/stats/(?P<sid>\d+)/$', pools.views.add_ney_stats, name='edit_ney_stats'),
+    url(r'^ney/stats/list/$', pools.views.ney_stat_list, name = 'ney_stat_list'),
 
 
     url(r'ney/homestats/add/$', pools.views.add_ney_home_stats, name='add_ney_home_stats'),

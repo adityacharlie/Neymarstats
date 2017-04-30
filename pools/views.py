@@ -41,7 +41,7 @@ def add_ney_stats(request, sid=None):
         ney_stats_form = NeyStatsForm(request.POST,instance=stat)
         if ney_stats_form.is_valid():
             ney_stats_form.save()
-            return HttpResponseRedirect(reverse('add_ney_stats'))
+            return HttpResponseRedirect(reverse('ney_stat_list'))
         else:
             print "form is invalid"
     else:
@@ -62,6 +62,10 @@ def add_ney_home_stats(request):
             print "form is invalid"
     context = RequestContext(request, {'ney_home_stats_form': ney_home_stats_form})
     return render(request, 'add_ney_home_stats.html', {'context': context})
+
+
+def ney_stat_list(request):
+    return render (request, 'ney_stats_list.html', {'stats': Stats.objects.all() })    
 
 
 

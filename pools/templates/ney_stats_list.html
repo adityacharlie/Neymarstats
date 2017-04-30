@@ -1,0 +1,41 @@
+{% extends "table.html" %}
+{% block table_data %}
+    <thead>
+        <tr>
+            <th>Game Appearences</th>
+            <th>Minutes Played</th>
+            <th>Goals Scored</th>
+            <th>Assists</th>
+            <th>Yellow Cards</th>
+            <th>Red Cards</th>
+            <th>shots Per Game</th>
+            <th>Pass Success Percentage</th>
+            <th>Aerials won</th>
+            <th>Man of the Match</th>
+            <th>Overall Rating</th>
+            <th>Published Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stat in stats %}
+        <tr ng-repeat="promotion in promotions" ng-class-odd="'odd'" ng-class-even="'even'">
+            <td>{{stat.game_appearences}}</td>
+            <td>{{stat.minutes_played}}</td>
+            <td>{{stat.goals_scored}}</td>
+            <td>{{stat.assists}}</td>
+            <td>{{stat.yellow_cards}}</td>
+            <td>{{stat.red_cards}}</td>
+            <td>{{stat.shots_per_game}}</td>
+            <td>{{stat.pass_success_percentage}}</td>
+            <td>{{stat.aerials_won}}</td>
+            <td>{{stat.man_of_the_match}}</td>
+            <td>{{stat.overall_rating}}</td>
+            <td>{{stat.pub_date}}</td>            
+            <td>
+                <a href="{% url 'edit_ney_stats' stat.id %}" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+{% endblock %}
