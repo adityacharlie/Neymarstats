@@ -18,9 +18,6 @@ from django.contrib import admin
 import pools.views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^question/add/$', pools.views.add_question, name='add_question'),
-    url(r'^question/list/$', pools.views.question_list, name='question_list'),
 
 
     # Stats URLs

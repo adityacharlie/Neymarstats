@@ -1,4 +1,4 @@
-from .forms import QuestionForm, NeyStatsForm, NeyHomeStatsForm
+from .forms import NeyStatsForm, NeyHomeStatsForm
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -7,28 +7,6 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 
 
 # Create your views here.
-
-
-def add_question(request):
-    question_form = QuestionForm()
-    if request.method == 'POST':
-        question_form = QuestionForm(request.POST)
-        if question_form.is_valid():
-            question_form.save()
-            return HttpResponseRedirect(reverse('add_question'))
-        else:
-            print "form is invalid"
-        print "sdfgfdg"
-    
-    context = RequestContext(request, {'question_form': question_form})
-    return render_to_response('add_question.html', context_instance=context)
-    
-
-def question_list(request):
-    questions = Question.objects.all()
-    
-    context = RequestContext(request, {'questions': questions})
-    return render_to_response('question_list.html', context_instance=context)
 
 
 def add_ney_stats(request, sid=None):
