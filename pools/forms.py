@@ -36,7 +36,7 @@ class NeyStatsForm(forms.ModelForm):
 
     class Meta:
         model = Stats
-        exclude = []
+        exclude = ['homestats']
 
 class NeyHomeStatsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
