@@ -6,8 +6,11 @@
 <div class="col-md-12">
     <h3>Neymar Stats Form</h3>
     <div class="row">
-        <div class="col-md-7">
-			{% crispy context.ney_stats_form %}
+        <div class="col-md-6">
+			{% crispy context.ney_home_stats_form %}
+		</div>
+		<div class="col-md-6">
+			{% crispy context.ney_away_stats_form %}
 		</div>
 	</div>
 </div>

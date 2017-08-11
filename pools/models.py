@@ -6,6 +6,23 @@ from django.template.defaultfilters import slugify as default_slugify
 import datetime
 import unidecode
 
+class AwayStats(models.Model):
+    game_appearences = models.IntegerField(_('game appearences'))
+    minutes_played = models.IntegerField(_('minutes played'))
+    goals_scored = models.IntegerField(_('goals scored'))
+    assists = models.IntegerField(_('assists'))
+    yellow_cards = models.IntegerField(_('yellow cards'))
+    red_cards = models.IntegerField(_('red cards'))
+    shots_per_game = models.DecimalField(_('shots per game'),max_digits=5, decimal_places=2)
+    pass_success_percentage = models.DecimalField(_('pass success percentage'),max_digits=5, decimal_places=2)
+    aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
+    man_of_the_match = models.IntegerField(_('man of the match'))
+    away_rating = models.DecimalField(_('overall_rating,'),max_digits=5, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode____(self):
+        return self.away_rating
 
 class HomeStats(models.Model):
     game_appearences = models.IntegerField(_('game appearences'))
@@ -19,13 +36,18 @@ class HomeStats(models.Model):
     aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
     man_of_the_match = models.IntegerField(_('man of the match'))
     home_rating = models.DecimalField(_('home rating'),max_digits=5, decimal_places=2)
-    pub_date = models.DateTimeField(_('date published'), auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    awaystats = models.OneToOneField(
+        AwayStats,
+        on_delete=models.CASCADE,
+    )
 
     def __unicode____(self):
         return self.home_rating
 
 
-class Stats(models.Model):
+"""class Stats(models.Model):
     game_appearences = models.IntegerField(_('game appearences'))
     minutes_played = models.IntegerField(_('minutes played'))
     goals_scored = models.IntegerField(_('goals scored'))
@@ -45,24 +67,7 @@ class Stats(models.Model):
     )
 
     def __unicode____(self):
-        return self.overall_rating
-
-class AwayStats(models.Model):
-    game_appearences = models.IntegerField(_('game appearences'))
-    minutes_played = models.IntegerField(_('minutes played'))
-    goals_scored = models.IntegerField(_('goals scored'))
-    assists = models.IntegerField(_('assists'))
-    yellow_cards = models.IntegerField(_('yellow cards'))
-    red_cards = models.IntegerField(_('red cards'))
-    shots_per_game = models.DecimalField(_('shots per game'),max_digits=5, decimal_places=2)
-    pass_success_percentage = models.DecimalField(_('pass success percentage'),max_digits=5, decimal_places=2)
-    aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
-    man_of_the_match = models.IntegerField(_('man of the match'))
-    away_rating = models.DecimalField(_('overall_rating,'),max_digits=5, decimal_places=2)
-    pub_date = models.DateTimeField(_('date published'), auto_now_add=True)
-
-    def __unicode____(self):
-        return self.away_rating
+        return self.overall_rating"""
 
 
 class DefensiveStats(models.Model):

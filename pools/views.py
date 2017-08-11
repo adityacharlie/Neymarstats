@@ -1,8 +1,8 @@
-from .forms import NeyStatsForm, NeyHomeStatsForm
+from .forms import NeyAwayStatsForm, NeyHomeStatsForm
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .models import *
+from .models import AwayStats, HomeStats
 from django.shortcuts import render, render_to_response, get_object_or_404
 
 
@@ -11,20 +11,27 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 
 def add_ney_stats(request, sid=None):
     if sid:
-        stat = get_object_or_404(Stats, pk=sid)
+        homestats = get_object_or_404(HomeStats, pk=sid)
+        awaystats = get_object_or_404(AwayStats, pk=homestats.awaystats_id)
     else:
-        stat = Stats()
-    ney_stats_form = NeyStatsForm()
+        homestats = HomeStats()
+        awaystats = AwayStats()
+    ney_home_stats_form = NeyHomeStatsForm()
+    ney_away_stats_form = NeyAwayStatsForm()
     if request.method == 'POST':
-        ney_stats_form = NeyStatsForm(request.POST,instance=stat)
-        if ney_stats_form.is_valid():
-            ney_stats_form.save()
+        ney_home_stats_form = NeyHomeStatsForm(request.POST,instance=homestats)
+        ney_away_stats_form = NeyAwayStatsForm(request.POST,instance=awaystats)
+        if ney_home_stats_form.is_valid() and ney_away_stats_form.is_valid():
+            ney_home_stats_form.save()
+            ney_away_stats_form.save()
             return HttpResponseRedirect(reverse('ney_stat_list'))
         else:
             print "form is invalid"
     else:
-        ney_stats_form = NeyStatsForm(instance=stat)
-    context = RequestContext(request, {'ney_stats_form': ney_stats_form})
+        ney_home_stats_form = NeyHomeStatsForm(instance=homestats)
+        ney_away_stats_form = NeyAwayStatsForm(instance=awaystats)
+    context = RequestContext(request, {'ney_home_stats_form': ney_home_stats_form,
+                                       'ney_away_stats_form': ney_away_stats_form})
     #return render_to_response('add_ney_stats.html', context_instance=context)
     return render(request, 'add_ney_stats.html', {'context': context})
 
