@@ -41,6 +41,7 @@ class HomeStats(models.Model):
     awaystats = models.OneToOneField(
         AwayStats,
         on_delete=models.CASCADE,
+        null=True,
     )
 
     def __unicode____(self):
