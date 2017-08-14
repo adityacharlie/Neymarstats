@@ -79,7 +79,7 @@ class NeyAwayStatsForm(forms.ModelForm):
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
         self.helper.form_id = 'id-neymarawaystatform'
-        
+        #I am not sure if this stays here
 
         self.helper.layout = Layout(
             Field('game_appearences', css_class='input-xlarge'),
