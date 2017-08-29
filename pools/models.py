@@ -17,7 +17,7 @@ class AwayStats(models.Model):
     pass_success_percentage = models.DecimalField(_('pass success percentage'),max_digits=5, decimal_places=2)
     aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
     man_of_the_match = models.IntegerField(_('man of the match'))
-    away_rating = models.DecimalField(_('overall_rating,'),max_digits=5, decimal_places=2)
+    away_rating = models.DecimalField(_('Away rating'),max_digits=5, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -32,7 +32,7 @@ class HomeStats(models.Model):
     yellow_cards = models.IntegerField(_('yellow cards'))
     red_cards = models.IntegerField(_('red cards'))
     shots_per_game = models.DecimalField(_('shots per game'),max_digits=5, decimal_places=2)
-    pass_success_percentage = models.DecimalField(_('pass success percentage'),max_digits=5, decimal_places=2)
+    pass_success_percentage = models.DecimalField(_('pass success %'),max_digits=5, decimal_places=2)
     aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
     man_of_the_match = models.IntegerField(_('man of the match'))
     home_rating = models.DecimalField(_('home rating'),max_digits=5, decimal_places=2)

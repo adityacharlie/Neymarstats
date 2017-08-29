@@ -27,6 +27,8 @@ def add_ney_stats(request, sid=None):
             return HttpResponseRedirect(reverse('ney_stat_list'))
         else:
             print "form is invalid"
+            print ney_home_stats_form.errors
+            print ney_away_stats_form.errors
     else:
         ney_home_stats_form = NeyHomeStatsForm(instance=homestats)
         ney_away_stats_form = NeyAwayStatsForm(instance=awaystats)
