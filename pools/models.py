@@ -7,17 +7,17 @@ import datetime
 import unidecode
 
 class AwayStats(models.Model):
-    game_appearences = models.IntegerField(_('game appearences'))
-    minutes_played = models.IntegerField(_('minutes played'))
-    goals_scored = models.IntegerField(_('goals scored'))
-    assists = models.IntegerField(_('assists'))
-    yellow_cards = models.IntegerField(_('yellow cards'))
-    red_cards = models.IntegerField(_('red cards'))
-    shots_per_game = models.DecimalField(_('shots per game'),max_digits=5, decimal_places=2)
-    pass_success_percentage = models.DecimalField(_('pass success percentage'),max_digits=5, decimal_places=2)
-    aerials_won = models.DecimalField(_('aerials won'),max_digits=5, decimal_places=2)
-    man_of_the_match = models.IntegerField(_('man of the match'))
-    away_rating = models.DecimalField(_('Away rating'),max_digits=5, decimal_places=2)
+    game_appearences = models.IntegerField(_('away game appearences'))
+    minutes_played = models.IntegerField(_('away minutes played'))
+    goals_scored = models.IntegerField(_('away goals scored'))
+    assists = models.IntegerField(_('away assists'))
+    yellow_cards = models.IntegerField(_('away yellow cards'))
+    red_cards = models.IntegerField(_('away red cards'))
+    shots_per_game = models.DecimalField(_('away shots per game'),max_digits=5, decimal_places=2)
+    pass_success_percentage = models.DecimalField(_('away pass success percentage'),max_digits=5, decimal_places=2)
+    aerials_won = models.DecimalField(_('away aerials won'),max_digits=5, decimal_places=2)
+    man_of_the_match = models.IntegerField(_('away man of the match'))
+    away_rating = models.DecimalField(_('away rating'),max_digits=5, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

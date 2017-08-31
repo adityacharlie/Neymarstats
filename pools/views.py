@@ -18,23 +18,35 @@ def add_ney_stats(request, sid=None):
         awaystats = AwayStats()
     ney_home_stats_form = NeyHomeStatsForm()
     ney_away_stats_form = NeyAwayStatsForm()
-    if request.method == 'POST':
-        ney_home_stats_form = NeyHomeStatsForm(request.POST,instance=homestats)
+
+    if request.method == 'POST' and 'away_submit' in request.POST:
         ney_away_stats_form = NeyAwayStatsForm(request.POST,instance=awaystats)
-        if ney_home_stats_form.is_valid() and ney_away_stats_form.is_valid():
-            ney_home_stats_form.save()
+        print ney_away_stats_form
+        if ney_away_stats_form.is_valid():
             ney_away_stats_form.save()
+            return HttpResponseRedirect(reverse('ney_stat_list'))
+        else:
+            print ney_away_stats_form.errors
+    else:
+        ney_away_stats_form = NeyAwayStatsForm(instance=awaystats)
+        
+    if request.method == 'POST' and 'home_submit' in request.POST:
+        ney_home_stats_form = NeyHomeStatsForm(request.POST,instance=homestats)
+        print ney_home_stats_form
+        if ney_home_stats_form.is_valid():
+            ney_home_stats_form.save()
             return HttpResponseRedirect(reverse('ney_stat_list'))
         else:
             print "form is invalid"
             print ney_home_stats_form.errors
-            print ney_away_stats_form.errors
     else:
         ney_home_stats_form = NeyHomeStatsForm(instance=homestats)
-        ney_away_stats_form = NeyAwayStatsForm(instance=awaystats)
+
+    
+
     context = RequestContext(request, {'ney_home_stats_form': ney_home_stats_form,
                                        'ney_away_stats_form': ney_away_stats_form})
-    #return render_to_response('add_ney_stats.html', context_instance=context)
+    
     return render(request, 'add_ney_stats.html', {'context': context})
 
 

@@ -64,14 +64,14 @@ class NeyHomeStatsForm(forms.ModelForm):
             'man_of_the_match',
             'home_rating',
             FormActions(
-                Submit('save', 'Save', css_class="btn-primary"),
+                Submit('save', 'Save', css_class="btn-primary", name='home_submit'),
                 Submit('cancel', 'Cancel'),
             ),
         )
 
     class Meta:
         model = HomeStats
-        exclude = ['awaystats']
+        exclude = ['awaystats','created_at','updated_at']
 
 
 class NeyAwayStatsForm(forms.ModelForm):
@@ -99,10 +99,18 @@ class NeyAwayStatsForm(forms.ModelForm):
             'aerials_won',
             'man_of_the_match',
             'away_rating',
+            FormActions(
+                Submit('save', 'Save', css_class="btn-primary", name='away_submit'),
+                Submit('cancel', 'Cancel'),
+            ),
         )
 
     class Meta:
         model = AwayStats
-        exclude = ['created_at','updated_at']       
+        exclude = ['away_rating','created_at','updated_at']       
 
     
+
+#https://stackoverflow.com/questions/34317157/multiple-django-crispy-forms-in-one-view
+# both form validations are being run no matter which submit button is pressed
+
