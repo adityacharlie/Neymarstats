@@ -45,6 +45,7 @@ class NeyHomeStatsForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-8'
         self.helper.field_class = 'col-lg-4'
+        #self.helper.form_id = 'id-neymarhomestatform'
         self.helper.form_id = 'id-neymarhomestatform'
         
 
